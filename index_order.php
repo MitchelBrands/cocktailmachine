@@ -19,12 +19,12 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 
-    <!-- Plugin CSS -->
-    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+    <!-- Plugin CSS 
+    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet"> -->
 
     <!-- Theme CSS -->
     <link href="css/creative.css" rel="stylesheet">
-	
+	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script type="text/javascript" src="<?php echo $ruadmin ?>js/bootstrap.js"></script>
 	<script src="<?php echo $ruadmin ?>js/tablesorter/jquery.tablesorter.js"></script>
@@ -47,9 +47,7 @@
 
 </head>
 
-<body id="page-top">
-
-    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+	<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -69,31 +67,20 @@
                         <a class="page-scroll" href=add_cocktail_page.php>Cocktail toevoegen</a>
                     </li>
 					<li>
-						<a class="page-scroll" href="#contact">Contact</a>
-                    </li>
-                    
+						<a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+					</li>
+					<li>
+						<a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+					</li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container-fluid -->
-    </nav>
+    </nav
 
+	<header></header>
 	
-    <header>
-        <div class="header-content">
-			
-				<div class="header-content-inner">
-					<div class="container-fluid">	
-						<h1 id="homeHeading">Dynamixe</h1>
-						<hr>
-						<p class ="main">Since 1888<p>
-						<a href="#order" class="btn btn-primary btn-xl page-scroll">Bestellen</a>
-					</div>
-				</div>
-		</div>
-    </header>
-
     <section id="order">
         <div class="container">
             <div class="row">
@@ -114,14 +101,12 @@
 					while($row = mysql_fetch_array($result))
 					{
 				?>	
-					
-				
 					<div class="col-xs-12 col-sm-6 col-md-3 text-center col-container">
 							<img class = "img-responsize"src="/img/<?php echo $row['Photo'] ;?>" width="auto" height="200">
 							<h3><?php echo $row['Namecocktail']; ?></h3>
 							<p class="text-muted"><?php echo $row['ShortDescription'];?></p>
 							<form name="form" method="post" action="order_cocktail_post.php" class = "form-horizontal">
-							
+								<input type="hidden" name="ingredient1" value="<?php echo $row['Ingredient1'];?>">
 								<input type="hidden" name="ingredient2" value="<?php echo $row['Ingredient2'];?>">
 								<input type="hidden" name="ingredient3" value="<?php echo $row['Ingredient3'];?>">
 								<input type="hidden" name="ingredient4" value="<?php echo $row['Ingredient4'];?>">
@@ -148,9 +133,9 @@
 							</div>
 							
 						
-						    <button type="button" class="btn btn-primary btn-large" data-toggle="modal" data-target="#myModal">More information</button>
+						    <button type="button" class="btn btn-primary btn-large" data-toggle="modal" data-target="#myModal<?php echo $row['id']; ?>">More information</button>
 
-						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="purchaseLabel" aria-hidden="true">
+						<div class="modal fade" id="myModal<?php echo $row['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="purchaseLabel" aria-hidden="true">
 							<div class="modal-dialog">
 								<div class="modal-content">
 									<div class="modal-header">
@@ -158,26 +143,22 @@
 										<h4 class="modal-title" id="purchaseLabel">Purchase</h4>
 									</div>
 									<div class="modal-body">
-										<?php echo $row['ShortDescription'];?>
-										<?php echo $row['LongDescription'];?>
-										<div>
-											
-										</div>
+										<p><?php echo $row['LongDescription'];?></p>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-										<button type="button" class="btn btn-primary" input type="submit" name="order_cocktail">Order</button>
+										<button type="submit" class="btn btn-primary" input type="submit" name="order_cocktail">Order</button>
 									</div>
 								</div>
 							</div>
 						</div>
+						</form>
 					</div>
-					<?php
-					}	
-					echo "</div>";
-					?>
+				
+			<?php
+				}	
+			?>
 			</div>
-			</form>
         </div>
 	</div>
     </section>
@@ -192,7 +173,7 @@
 		</div>
     
 	
-	</footer> <!--/.footerbuttom-->
+	</footer> 
 
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -206,8 +187,7 @@
     <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
 
     <!-- Theme JavaScript -->
-    <script src="js/creative.min.js"></script>
-	
+    <script src="js/creative.min.js"></script> 
 
 
 </body>

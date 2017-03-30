@@ -73,10 +73,6 @@
         <!-- /.container-fluid -->
     </nav>
 
-	
-    <header>
-    </header>
-
 <section id = "add_cocktail">
 	<div>	
 		<?php include "add_cocktail_code.php"?>
